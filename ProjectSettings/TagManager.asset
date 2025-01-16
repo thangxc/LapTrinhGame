@@ -11,11 +11,14 @@ TagManager:
   - Sheep2
   - Sheep1
   - Sheep3
+  - Spring
+  - FallingObject
+  - Water
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - 

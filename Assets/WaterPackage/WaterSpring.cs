@@ -36,7 +36,7 @@ public class WaterSpring : MonoBehaviour
         var x = height - target_height;
         var loss = -dampening * velocity;
 
-        print(loss);
+        //print(loss);
         force = - springStiffness * x + loss;
         
         velocity += force;
@@ -53,7 +53,7 @@ public class WaterSpring : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.tag.Equals("Sheep1")|| other.gameObject.tag.Equals("Sheep2")|| other.gameObject.tag.Equals("Sheep3")) {
+        if (other.gameObject.tag.Equals("Sheep2")|| other.gameObject.tag.Equals("Sheep3")) {
             Sheep fallingObject = other.gameObject.GetComponent<Sheep>();
             Rigidbody2D rb = fallingObject.rb;
             var speed = rb.velocity;

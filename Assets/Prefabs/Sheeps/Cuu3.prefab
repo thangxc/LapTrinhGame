@@ -171,9 +171,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1620d590214bd21458d3cbe4b8c815b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
   number: 2
   runSpeed: 4
-  jumpForce: 5
+  jumpForce: 6
   mass: 1
   isFlagged: 0
   isJumped: 0
+  swimmingForceAmount: 10
+  targetCollider: {fileID: 0}

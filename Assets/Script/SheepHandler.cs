@@ -41,6 +41,7 @@ public class SheepHandler : Singleton<SheepHandler>
    // control the sheep
     public void CharterInputControl()
     {
+        targetSheep.Swimming();
         //Moving Left Right
         if (Input.GetKey(KeyCode.A))
             {

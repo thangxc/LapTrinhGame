@@ -17,6 +17,42 @@ public class Sheep : MonoBehaviour
     public bool isFlagged = false;
     public bool isJumped;
 
+    //Swmiming setup
+    private Vector2 movementDirection;
+    [SerializeField]
+    private float swimmingForceAmount;
+    private bool isMoving = false;
+    private bool isSwimming = false;
+
+    public Collider2D targetCollider;
+
+    private void Start()
+    {
+        if (number == 0)
+        {
+            targetCollider = FindAnyObjectByType<WaterShapeController>().GetComponent<Collider2D>();
+            // Get the Collider component of the current object
+            Collider2D thisCollider = GetComponent<Collider2D>();
+
+            // Ensure both Colliders are set
+            if (thisCollider != null && targetCollider != null)
+            {
+                // Ignore collision between the two objects
+                Physics2D.IgnoreCollision(thisCollider, targetCollider);
+            }
+            else
+            {
+                Debug.LogError("Colliders are not set properly!");
+            }
+        }
+    }
+
+    private void Update()
+    {
+        isJumped = !IsGrounded();
+        //print(IsGrounded());
+    }
+
     //SetUp
     public void SetUp() 
     {
@@ -28,21 +64,68 @@ public class Sheep : MonoBehaviour
     //Moving
     public void Jump()
     {
-        //print(isJumped);
-        if (rb.velocity.y==0)
+        if (!isSwimming)
         {
-            this.rb.AddForce(Vector2.up * this.jumpForce, ForceMode2D.Impulse);
+            //print(isJumped);
+            //if (!isJumped)
+            if(rb.velocity.y==0)
+            {
+                isJumped = true;
+                this.rb.AddForce(Vector2.up * this.jumpForce, ForceMode2D.Impulse);
+            }
         }
     }
     public void Move(string dir)
     {
-        
-        StartCoroutine(Moving(dir));
+        if (!isSwimming)
+        {
+
+            StartCoroutine(Moving(dir));
+        }
     }
+    //
     public void Stop()
+        {
+            StartCoroutine(Stoping());
+        }
+    public void Swimming()
     {
-        StartCoroutine(Stoping());
+        if (isSwimming)
+        {
+            //print("a");
+
+
+            //if (Input.GetKeyDown(KeyCode.Space))
+            //{
+            //    movementDirection = new Vector2(0f, 1f);
+            //    isMoving = true;
+            //}
+            //if (Input.GetKeyUp(KeyCode.Space))
+            //{
+            //    movementDirection = new Vector2(0, -1);
+            //}
+            movementDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
+            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow)|| Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+            {
+                //print(movementDirection);
+                //print("A");
+                isMoving = true;
+            }
+            if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow)|| Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+            {
+                //movementDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+                isMoving = false;
+            }
+            if (isMoving)
+            {
+                rb.velocity = movementDirection * swimmingForceAmount;
+            }
+        }
     }
+
+    //
+    
     IEnumerator Stoping()
     {
 
@@ -66,11 +149,16 @@ public class Sheep : MonoBehaviour
         yield return null;
     }
     //Check collider
+    private bool IsGrounded()
+    {
+        return Physics2D.Raycast(transform.position, Vector2.down, 0.01f, LayerMask.GetMask("Ground"));
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            this.isJumped = false;
+            
+            
         }
         if (collision.gameObject.CompareTag("TrafficLight")&&number==0)
         {
@@ -89,13 +177,18 @@ public class Sheep : MonoBehaviour
             print(this.name+"Enter");
             SheepHandler.Instance.NumberSheepFlagged += 1;
         }
+        if (collision.tag == "Water")
+        {
+            //print("InWater");
+            isSwimming = true;
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            this.isJumped = true;
+            //this.isJumped = true;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -104,6 +197,10 @@ public class Sheep : MonoBehaviour
         {
             isFlagged = false;
             SheepHandler.Instance.NumberSheepFlagged -= 1;
+        }
+        if (collision.tag == "Water")
+        {
+            isSwimming = false;
         }
     }
 
