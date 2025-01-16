@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Menu.unity
-    guid: 0a7ac6a428802c342ac2c6e49f45ae8f
-  - enabled: 1
     path: Assets/Scenes/Scene1.unity
     guid: 06df87888fadc5148959b01118c6b92b
   - enabled: 1
@@ -35,7 +32,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tutorial3.unity
     guid: 638b878b98562074196775853a0fd1ea
-  - enabled: 1
-    path: Assets/Scenes/Canvas.unity
-    guid: 19af0c8f9fc1e1648b3c95cee8700f8b
   m_configObjects: {}

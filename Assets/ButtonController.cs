@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Color = UnityEngine.Color;
 
@@ -10,13 +11,14 @@ public class ButtonController : Singleton<ButtonController>
     public List<Button> targetButton; // Reference to the button
     public Color activeColor = Color.red; // Color to change to
     public Color inactiveColor = Color.white; // Color to change to
-    public void BackToMenu()
+    public void Quit()
     {
 
     }
     public void Retry()
     {
-
+        //print("reload");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void Hint()
     {
