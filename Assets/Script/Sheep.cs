@@ -30,19 +30,26 @@ public class Sheep : MonoBehaviour
     {
         if (number == 0)
         {
-            targetCollider = FindAnyObjectByType<WaterShapeController>().GetComponent<Collider2D>();
-            // Get the Collider component of the current object
-            Collider2D thisCollider = GetComponent<Collider2D>();
+            try
+            {
+                targetCollider = FindAnyObjectByType<WaterShapeController>().GetComponent<Collider2D>();
+                // Get the Collider component of the current object
+                Collider2D thisCollider = GetComponent<Collider2D>();
 
-            // Ensure both Colliders are set
-            if (thisCollider != null && targetCollider != null)
-            {
-                // Ignore collision between the two objects
-                Physics2D.IgnoreCollision(thisCollider, targetCollider);
+                // Ensure both Colliders are set
+                if (thisCollider != null && targetCollider != null)
+                {
+                    // Ignore collision between the two objects
+                    Physics2D.IgnoreCollision(thisCollider, targetCollider);
+                }
+                else
+                {
+                    Debug.LogError("Colliders are not set properly!");
+                }
             }
-            else
+            catch
             {
-                Debug.LogError("Colliders are not set properly!");
+                //Debug.LogError("Colliders are not set properly!");
             }
         }
     }

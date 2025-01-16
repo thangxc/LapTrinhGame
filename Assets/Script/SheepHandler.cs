@@ -11,7 +11,7 @@ using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class SheepHandler : Singleton<SheepHandler>
 {
-
+    //public ScoreSystem scoreSystem;
     public List<Vector2> bornPos;
     public List<Sheep> sheeps;
     private Sheep targetSheep;
@@ -71,17 +71,24 @@ public class SheepHandler : Singleton<SheepHandler>
         //Switching sheep
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            targetSheep = sheeps[0];
+
+            SwitchSheep(0);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            targetSheep = sheeps[1];
+            SwitchSheep(1);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            targetSheep = sheeps[2];
+            SwitchSheep(2);
         }
 
+    }
+
+    public void SwitchSheep(int sheepNumber)
+    {
+        ButtonController.Instance.ButtonSheepColor( sheepNumber);
+        targetSheep = sheeps[sheepNumber];
     }
 
     //Check if sheep hit the Flag
@@ -89,6 +96,7 @@ public class SheepHandler : Singleton<SheepHandler>
     {
         if( NumberSheepFlagged == 3)
         {
+            //scoreSystem.CalculateScore();
             print("gameComplete");
         }
     }
