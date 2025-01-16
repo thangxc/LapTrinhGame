@@ -22,6 +22,7 @@ public class SheepHandler : Singleton<SheepHandler>
     [HideInInspector]
     public int NumberSheepFlagged = 0;
     private bool DieFlagged = false;
+    
 
     private void Awake()
     {
@@ -91,13 +92,18 @@ public class SheepHandler : Singleton<SheepHandler>
         targetSheep = sheeps[sheepNumber];
     }
 
+    public bool finishedFlagg = false;
+
     //Check if sheep hit the Flag
     public void CheckSheepsFlagged()
     {
-        if( NumberSheepFlagged == 3)
+        if( NumberSheepFlagged == 3&& !finishedFlagg)
         {
+            
+            GameManagement.Instance.EndGame();
             //scoreSystem.CalculateScore();
             print("gameComplete");
+            finishedFlagg = true;
         }
     }
     public void CheckSheepsDied()
@@ -116,6 +122,7 @@ public class SheepHandler : Singleton<SheepHandler>
 
     private void Update()
     {
+
         CheckSheepsDied();
         CharterInputControl();
         CheckSheepsFlagged();

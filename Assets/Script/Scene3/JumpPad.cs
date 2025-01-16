@@ -14,7 +14,7 @@ public class JumpPad : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Sheep2") || collision.gameObject.CompareTag("Sheep3"))
             {
-                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * bounce / collision.gameObject.GetComponent<Rigidbody2D>().mass, ForceMode2D.Impulse);
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * bounce * collision.gameObject.GetComponent<Sheep>().mass, ForceMode2D.Impulse);
             }
 
 

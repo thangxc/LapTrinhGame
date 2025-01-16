@@ -13,7 +13,7 @@ public class ButtonController : Singleton<ButtonController>
     public Color inactiveColor = Color.white; // Color to change to
     public void Quit()
     {
-
+        SceneManager.LoadScene("Menu");
     }
     public void Retry()
     {

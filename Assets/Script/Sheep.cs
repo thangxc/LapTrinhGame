@@ -13,6 +13,8 @@ public class Sheep : MonoBehaviour
     public int jumpForce;
     public int mass;
 
+    public Animator animator ;
+
     [HideInInspector]
     public bool isFlagged = false;
     public bool isJumped;
@@ -28,6 +30,7 @@ public class Sheep : MonoBehaviour
 
     private void Start()
     {
+        this.animator = GetComponent<Animator>();
         if (number == 0)
         {
             try
@@ -86,14 +89,15 @@ public class Sheep : MonoBehaviour
     {
         if (!isSwimming)
         {
-
+            animator.SetBool("Running",true);
             StartCoroutine(Moving(dir));
         }
     }
     //
     public void Stop()
         {
-            StartCoroutine(Stoping());
+        animator.SetBool("Running", false);
+        StartCoroutine(Stoping());
         }
     public void Swimming()
     {
@@ -145,10 +149,12 @@ public class Sheep : MonoBehaviour
         Vector2 vectorDir = Vector2.zero;
         if (dir == "right")
         {
+            this.transform.localScale = new Vector3(1, 1, 1);
             vectorDir = Vector2.right;
         }
         if (dir == "left")
         {
+            this.transform.localScale = new Vector3(-1, 1, 1);
             vectorDir = Vector2.left;
         }
         this.rb.velocity = new Vector2(vectorDir.x * this.runSpeed, this.rb.velocity.y);

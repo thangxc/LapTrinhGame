@@ -1,16 +1,12 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Timer : MonoBehaviour
+public class Timer : Singleton<Timer>
 {
-    public Text timerText;
+    public TextMeshProUGUI timerText;
     private float startTime;
-    private bool isRunning = true;
-
-    void Start()
-    {
-        startTime = Time.time;
-    }
+    private bool isRunning;
 
     void Update()
     {
@@ -21,6 +17,12 @@ public class Timer : MonoBehaviour
             string seconds = (t % 60).ToString("f2");
             timerText.text = minutes + ":" + seconds;
         }
+    }
+
+    public void StartTimer()
+    {
+        startTime = Time.time;
+        isRunning = true;
     }
 
     public void StopTimer()

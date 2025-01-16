@@ -4,8 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
-    public void PlayTutorial()
+    public void PlayTutorial(string sceneName)
     {
-        SceneManager.LoadSceneAsync(7);
+        SceneManager.LoadSceneAsync(sceneName);
+    }
+    public void LoadSceneByName(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 }
