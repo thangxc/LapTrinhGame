@@ -1774,10 +1774,34 @@ PrefabInstance:
     - target: {fileID: 268860697411340331, guid: 66a837a69f9fb5e44be7a941b19dd1ac, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 2098609252}
+    - target: {fileID: 268860697411340331, guid: 66a837a69f9fb5e44be7a941b19dd1ac, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadSceneByName
+      objectReference: {fileID: 0}
+    - target: {fileID: 5012212770358320621, guid: 66a837a69f9fb5e44be7a941b19dd1ac, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5012212770358320621, guid: 66a837a69f9fb5e44be7a941b19dd1ac, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5012212770358320621, guid: 66a837a69f9fb5e44be7a941b19dd1ac, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 2098609252}
+    - target: {fileID: 5012212770358320621, guid: 66a837a69f9fb5e44be7a941b19dd1ac, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5012212770358320621, guid: 66a837a69f9fb5e44be7a941b19dd1ac, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadNextScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 5012212770358320621, guid: 66a837a69f9fb5e44be7a941b19dd1ac, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: GameManagement, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5833878430145756526, guid: 66a837a69f9fb5e44be7a941b19dd1ac, type: 3}
       propertyPath: m_Pivot.x
@@ -1860,8 +1884,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7280950834369435065, guid: 66a837a69f9fb5e44be7a941b19dd1ac, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280950834369435065, guid: 66a837a69f9fb5e44be7a941b19dd1ac, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 2098609252}
+    - target: {fileID: 7280950834369435065, guid: 66a837a69f9fb5e44be7a941b19dd1ac, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Reload
       objectReference: {fileID: 0}
     - target: {fileID: 8732183824038082019, guid: 66a837a69f9fb5e44be7a941b19dd1ac, type: 3}
       propertyPath: m_Name
