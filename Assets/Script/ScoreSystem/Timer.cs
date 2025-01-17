@@ -27,6 +27,7 @@ public class Timer : Singleton<Timer>
 
     public void StopTimer()
     {
+        print("StopTime");
         isRunning = false;
     }
 

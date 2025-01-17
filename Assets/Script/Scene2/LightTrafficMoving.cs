@@ -21,5 +21,5 @@ public class LightTrafficMoving : MonoBehaviour
             trafficLight.GetComponent<Rigidbody2D>().velocity = (Vector2.left * 10);
         }
     }    
-
+    
 }

@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "FinalProject_GameProgramming.sln"
+    "dotnet.defaultSolution": "LapTrinhGame.sln"
 }

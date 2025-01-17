@@ -11,7 +11,7 @@ public class ButtonTrigger : MonoBehaviour
     [SerializeField] private UnityEvent WhenExit;
 
     private string nameCollison;
-
+    public TheLight theLight;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (nameCollison == null)
@@ -20,11 +20,13 @@ public class ButtonTrigger : MonoBehaviour
             {
                 WhenEnter.Invoke();
                 nameCollison = collision.transform.tag;
+                theLight.SwitchToSprite1();
             }
             if (collision.CompareTag("Box"))
             {
                 WhenEnter.Invoke();
                 nameCollison = "Box";
+                theLight.SwitchToSprite1();
             }
         }
     }
@@ -41,6 +43,7 @@ public class ButtonTrigger : MonoBehaviour
             {
                 WhenExit.Invoke();
                 nameCollison = null;
+                theLight.SwitchToSprite2();
             }
         }
     }

@@ -100,10 +100,11 @@ public class SheepHandler : Singleton<SheepHandler>
         if( NumberSheepFlagged == 3&& !finishedFlagg)
         {
             
-            GameManagement.Instance.EndGame();
+            
             //scoreSystem.CalculateScore();
             print("gameComplete");
             finishedFlagg = true;
+            GameManagement.Instance.EndGame();
         }
     }
     public void CheckSheepsDied()

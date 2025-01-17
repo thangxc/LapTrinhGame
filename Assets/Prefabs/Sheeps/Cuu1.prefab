@@ -30,8 +30,8 @@ Transform:
   m_GameObject: {fileID: 446729334559605489}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.49, y: 16.05, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 2}
+  m_LocalPosition: {x: -7.49, y: 16.05, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -182,6 +182,7 @@ MonoBehaviour:
   isJumped: 0
   swimmingForceAmount: 10
   targetCollider: {fileID: 0}
+  trafficLight: {fileID: 8269121640465848844, guid: 73f8f626ce2d06e428967a66c10213ed, type: 3}
 --- !u!95 &4835148540243446324
 Animator:
   serializedVersion: 5

@@ -27,7 +27,6 @@ public class Sheep : MonoBehaviour
     private bool isSwimming = false;
 
     public Collider2D targetCollider;
-
     private void Start()
     {
         this.animator = GetComponent<Animator>();
@@ -167,20 +166,27 @@ public class Sheep : MonoBehaviour
         return Physics2D.Raycast(transform.position, Vector2.down, 0.01f, LayerMask.GetMask("Ground"));
     }
     private void OnCollisionEnter2D(Collision2D collision)
+{
+    if (collision.gameObject.CompareTag("Ground"))
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        // Handle ground collision
+    }
+
+    if (collision.gameObject.CompareTag("TrafficLight") && number == 0)
+    {
+        StartCoroutine(Stoping());
+
+        // Disable the second Collider2D component
+        collision.gameObject.GetComponentsInChildren<Collider2D>()[1].enabled = false;
+
+        // Get the TrafficLight component and switch sprites
+        TheLight theLight= collision.gameObject.GetComponent<TheLight>();
+        if (theLight != null)
         {
-            
-            
-        }
-        if (collision.gameObject.CompareTag("TrafficLight")&&number==0)
-        {
-            StartCoroutine(Stoping());
-            //print("a");
-            //collision.Animator:V
-            collision.gameObject.GetComponentsInChildren<Collider2D>()[1].enabled = false;
+            theLight.SwitchToSprite1();
         }
     }
+}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
