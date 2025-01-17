@@ -36,6 +36,7 @@ public class ButtonTrigger : MonoBehaviour
         {
             this.GetComponent<BoxCollider2D>().enabled = false;
             triggerOnce = false;
+            return;
         }
         if (!triggerOnce)
         {
