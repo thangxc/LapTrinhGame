@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9171966590904218425}
   - component: {fileID: 8564815217341493157}
   m_Layer: 0
-  m_Name: SheepMovementController
+  m_Name: SheepHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -5,68 +5,78 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 //using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 
-public class SheepHandler : Singleton<SheepHandler>
+public class SheepHandler : Singleton<SheepHandler>, IManager
 {
     //public ScoreSystem scoreSystem;
-    public List<Vector2> bornPos;
-    public List<Sheep> sheeps;
-    private Sheep targetSheep;
-    public GameObject sheepArrow;
-    UnityEngine.Vector2 vectorDir = new UnityEngine.Vector2(0,0);
-
-
-    [HideInInspector]
-    public int NumberSheepFlagged = 0;
-    private bool DieFlagged = false;
     
+    public List<Sheep> sheeps;
+    private Sheep _targetSheep;
 
-    private void Awake()
+    //public SheepSpawnConfig config;
+
+    [HideInInspector]   public int NumberSheepFlagged = 0;
+    [HideInInspector]   public bool finishedFlagg = false;
+    private bool DieFlagged = false;
+    public Vector3[] bornPos;
+
+    public void Initialize()
     {
-
+        //print("a");
         //sinh cuu
         for (int i = 0; i < sheeps.Count; i++)
-        { 
-            sheeps[i]=GameObject.Instantiate(sheeps[i], bornPos[i], Quaternion.identity);
+        {
+            sheeps[i] = GameObject.Instantiate(sheeps[i], bornPos[i], Quaternion.identity);
             sheeps[i].SetUp();
         }
 
         //gan cuu
-        targetSheep = sheeps[0];
+        _targetSheep = sheeps[0];
 
     }
+    public void UpdateManager()
+    {
 
-   // control the sheep
+        CheckSheepsDied();
+        CharterInputControl();
+        CheckSheepsFlagged();
+        //dieu khien cuu duoc chon
+
+        //print(targetSheep.sheepGameObject.transform.position);
+    }
+
+    // control the sheep
     public void CharterInputControl()
     {
-        targetSheep.Swimming();
+        _targetSheep.Swimming();
         //Moving Left Right
         if (Input.GetKey(KeyCode.A))
             {
-                targetSheep.Move("left");
+            _targetSheep.Move("left");
             }
         if (Input.GetKey(KeyCode.D))
             {
-                targetSheep.Move("right");
+            _targetSheep.Move("right");
             }
 
         if (Input.GetKeyUp(KeyCode.A))
         {
-            targetSheep.Stop();
+            _targetSheep.Stop();
         }
         if (Input.GetKeyUp(KeyCode.D))
         {
-            targetSheep.Stop();
+            _targetSheep.Stop();
         }
 
         //Jumping
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
             {
-                
-                targetSheep.Jump();
+
+            _targetSheep.Jump();
             }
         
         //Switching sheep
@@ -89,10 +99,9 @@ public class SheepHandler : Singleton<SheepHandler>
     public void SwitchSheep(int sheepNumber)
     {
         ButtonController.Instance.ButtonSheepColor( sheepNumber);
-        targetSheep = sheeps[sheepNumber];
+        _targetSheep = sheeps[sheepNumber];
     }
 
-    public bool finishedFlagg = false;
 
     //Check if sheep hit the Flag
     public void CheckSheepsFlagged()
@@ -119,17 +128,6 @@ public class SheepHandler : Singleton<SheepHandler>
             }
 
         }
-    }
-
-    private void Update()
-    {
-
-        CheckSheepsDied();
-        CharterInputControl();
-        CheckSheepsFlagged();
-        //dieu khien cuu duoc chon
-
-        //print(targetSheep.sheepGameObject.transform.position);
     }
 
     

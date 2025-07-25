@@ -6,11 +6,26 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Color = UnityEngine.Color;
 
-public class ButtonController : Singleton<ButtonController>
+public class ButtonController : Singleton<ButtonController> , IManager
 {
+    private GameObject _ButtonSet;
     public List<Button> targetButton; // Reference to the button
     public Color activeColor = Color.red; // Color to change to
     public Color inactiveColor = Color.white; // Color to change to
+
+    public ButtonController()
+    {
+        //_ButtonSet.AddComponent<this>
+    }
+    public void Initialize()
+    {
+        SetActiveButton(0);
+    }
+    public void UpdateManager()
+    {
+        
+    }
+
     public void Quit()
     {
         SceneManager.LoadScene("Menu");
@@ -40,13 +55,13 @@ public class ButtonController : Singleton<ButtonController>
     {
         SetActiveButton(buttonNumber);
     }
-    private void Start()
-    {
+    //private void Start()
+    //{
 
-        // Set the initial state (first button active by default)
-        SetActiveButton(0);
+    //    // Set the initial state (first button active by default)
+    //    SetActiveButton(0);
 
-    }
+    //}
 
     public void SetActiveButton(int activeIndex)
     {

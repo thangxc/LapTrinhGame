@@ -7,11 +7,12 @@ public class Sheep : MonoBehaviour
 {
 
     [HideInInspector]public Rigidbody2D rb;
-    private Collider2D Collider2D;
+    //private Collider2D Collider2D;
     public int number;
     public int runSpeed;
     public int jumpForce;
     public int mass;
+
 
     public Animator animator ;
 
@@ -20,11 +21,11 @@ public class Sheep : MonoBehaviour
     public bool isJumped;
 
     //Swmiming setup
-    private Vector2 movementDirection;
+    private Vector2 _movementDirection;
     [SerializeField]
-    private float swimmingForceAmount;
-    private bool isMoving = false;
-    private bool isSwimming = false;
+    private float _swimmingForceAmount;
+    private bool _isMoving = false;
+    private bool _isSwimming = false;
 
     public Collider2D targetCollider;
     private void Start()
@@ -62,18 +63,18 @@ public class Sheep : MonoBehaviour
         //print(IsGrounded());
     }
 
-    //SetUp
+    /*SetUp*/
     public void SetUp() 
     {
         this.rb = GetComponent<Rigidbody2D>();
         this.rb.mass = this.mass;
-        this.Collider2D = GetComponent<Collider2D>();
+        //this.Collider2D = GetComponent<Collider2D>();
     }
     
-    //Moving
+    /*Moving*/
     public void Jump()
     {
-        if (!isSwimming)
+        if (!_isSwimming)
         {
             //print(isJumped);
             //if (!isJumped)
@@ -83,16 +84,17 @@ public class Sheep : MonoBehaviour
                 this.rb.AddForce(Vector2.up * this.jumpForce, ForceMode2D.Impulse);
             }
         }
-    }
+    }  
+    //
     public void Move(string dir)
     {
-        if (!isSwimming)
+        if (!_isSwimming)
         {
             animator.SetBool("Running",true);
             StartCoroutine(Moving(dir));
         }
     }
-    //
+
     public void Stop()
         {
         animator.SetBool("Running", false);
@@ -100,7 +102,7 @@ public class Sheep : MonoBehaviour
         }
     public void Swimming()
     {
-        if (isSwimming)
+        if (_isSwimming)
         {
             //print("a");
 
@@ -114,28 +116,28 @@ public class Sheep : MonoBehaviour
             //{
             //    movementDirection = new Vector2(0, -1);
             //}
-            movementDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            _movementDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
             if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow)|| Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
             {
                 //print(movementDirection);
                 //print("A");
-                isMoving = true;
+                _isMoving = true;
             }
             if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow)|| Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
             {
                 //movementDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-                isMoving = false;
+                _isMoving = false;
             }
-            if (isMoving)
+            if (_isMoving)
             {
-                rb.velocity = movementDirection * swimmingForceAmount;
+                rb.velocity = _movementDirection * _swimmingForceAmount;
             }
         }
     }
 
     //
-    
+
     IEnumerator Stoping()
     {
 
@@ -160,7 +162,9 @@ public class Sheep : MonoBehaviour
         //rb.AddForce(vectorDir * runSpeed, ForceMode2D.Force);
         yield return null;
     }
-    //Check collider
+
+
+    /*Check collider*/
     private bool IsGrounded()
     {
         return Physics2D.Raycast(transform.position, Vector2.down, 0.01f, LayerMask.GetMask("Ground"));
@@ -199,7 +203,7 @@ public class Sheep : MonoBehaviour
         if (collision.tag == "Water")
         {
             //print("InWater");
-            isSwimming = true;
+            _isSwimming = true;
         }
     }
 
@@ -219,7 +223,7 @@ public class Sheep : MonoBehaviour
         }
         if (collision.tag == "Water")
         {
-            isSwimming = false;
+            _isSwimming = false;
         }
     }
 
