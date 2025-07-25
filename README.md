@@ -1,8 +1,15 @@
 # Game_Programming"# LapTrinhGame" 
-main menu
-e:\Unity\LapTrinhGame\New folder\MainMenu.png
-![alt text](image.png)
-![alt text](image-1.png)
-![alt text](image-2.png)
-![alt text](image-3.png)
-![alt text](image-4.png)
+MainMenu
+![alt text](MainMenu.png)
+![alt text](MainMenu2.png)
+
+Tutorial
+![alt text](Tuto1.png)
+![alt text](Tuto2.png)
+
+Water Scene
+![alt text](WaterScene-2.png)
+
+RandomScene
+![alt text](SomeRandomScene1.png) 
+![alt text](SomeRandomScene.png)
